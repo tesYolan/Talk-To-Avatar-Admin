@@ -1,0 +1,14 @@
+<div *ngIf="instance">
+  <h2>{{instance.name}} Session Detail</h2>
+  <div>
+    <label>name: </label>{{instance.name}}</div>
+  <div>
+    <label>Users in Session: </label>{{instance.in_session}}
+    <label>Docker id: </label>{{instance.docker_id}}
+    <label>Token id: </label>{{instance.token_id}}
+  </div>
+  <button (click)="goBack()">Back</button>
+  <button (click)="launch()">Go to Session</button>
+  <button (click)="share()">Generate Session Token for users</button>
+  <button (click)="destroy()">Terminate Session</button>
+</div>

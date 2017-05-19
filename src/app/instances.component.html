@@ -1,0 +1,13 @@
+<h2>Instances</h2>
+<div *ngIf="configuration">
+  Using Server Configuration {{configuration.commit_id}}
+</div>
+<div>
+<ul class="instances">
+  <li *ngFor="let instance of instances" [class.selected]="instance === selectedInstance" (click)="onSelect(instance)">
+  <span class="badge">{{instance.name}}</span>
+  </li>
+</ul>
+<!--TODO indicate new new instance can't be created-->
+<button (click)="create()">Create New Session</button>
+</div>
