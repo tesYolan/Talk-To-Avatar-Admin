@@ -13,6 +13,7 @@ export class InstanceService
 {
   private instanceUrl = 'http://localhost:3011/instances';
   private headers = new Headers({'Content-Type': 'application/json'});
+  private instance = 'instance';
 
   constructor(private http: Http) {}
 
@@ -30,11 +31,27 @@ export class InstanceService
     .catch(this.handleError);
   }
 
-  create(name: JSON): Promise<Instance> {
+  create(name: JSON): Promise<string> {
     let options = new RequestOptions({ headers: this.headers });
-    return this.http.post(this.instanceUrl, { name }, options)
+    console.log(name);
+    return this.http.post(this.instanceUrl,  name , options)
     .toPromise()
-    .then(this.extractData)
+    .then(() => null)//TODO route this to message
+    .catch(this.handleError);
+  }
+
+  deleteInstances(): Promise<Instance[]> {
+    return this.http.delete(this.instanceUrl, { headers: this.headers } )
+    .toPromise()
+    .then(() => null)
+    .catch(this.handleError);
+  }
+
+  deleteInstance(id: string): Promise<Instance> {
+    const url = `${this.instanceUrl}/${id}`;
+    return this.http.delete(url, { headers: this.headers } )
+    .toPromise()
+    .then(() => null)
     .catch(this.handleError);
   }
 
@@ -76,6 +93,10 @@ export class InstanceService
   private extractData(res: Response) {
     let body = res.json();
     return body || { };
+  }
+  private extractText(res: Response) {
+    console.log(res);
+    return res;
   }
 
   private handleError(error: any): Promise<any> {

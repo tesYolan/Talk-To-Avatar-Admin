@@ -8,6 +8,7 @@ import { ConfigurationService } from './configuration.service';
 })
 export class ServerConfigurationComponent implements OnInit{
   configurations: any[];
+  config: 'config';
 
   constructor(service: ConfigurationService) {
     this.configurations = service.getConfigurationsForm();

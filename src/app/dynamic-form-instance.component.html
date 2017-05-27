@@ -1,0 +1,17 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <div *ngFor="let configuration of configurations" class="form-row">
+      <df-configuration [configuration]="configuration" [form]="form"></df-configuration>
+    </div>
+
+    <div class="form-row">
+      <button type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+  </form>
+
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Creating the following instance. </strong>
+    <br>{{payLoad}}
+  </div>
+</div>

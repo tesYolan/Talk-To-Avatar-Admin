@@ -8,6 +8,7 @@ import { InstanceService } from './instance.service';
 })
 export class NewInstanceComponent implements OnInit{
   configurations: any[];
+  instance: 'instance';
 
   constructor(service: InstanceService) {
     this.configurations = service.getNewInstanceConfigurationsForm()

@@ -14,6 +14,7 @@ import { Configuration } from './configuration';
 export class ConfigurationService {
   private configurationUrl = 'http://localhost:3011/configuration';
   private headers = new Headers({'Content-Type': 'application/json'});
+  private config = 'config';
   constructor(private http: Http){ }
   create(name: JSON): Promise<Configuration> {
     let options = new RequestOptions({ headers: this.headers });

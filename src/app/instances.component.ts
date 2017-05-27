@@ -24,6 +24,9 @@ export class InstancesComponent implements OnInit {
   getConfiguration(): void {
     this.configurationService.getConfiguration().then(configuration => this.configuration = configuration);
   }
+  deleteInstanceService(): void {
+    this.instanceService.deleteInstances().then(instance => {this.instances =[]});
+  }
   ngOnInit(): void {
     this.getConfiguration();
     this.getInstances();
@@ -35,8 +38,11 @@ export class InstancesComponent implements OnInit {
     console.log(this.selectedInstance);
     this.goToDetail();
   };
-  create(): void{
+  createInstances(): void{
     this.router.navigate(['/instances/create']);
+  }
+  deleteInstances(): void{
+    this.deleteInstanceService();
   }
   goToDetail(): void {
     console.log(this.selectedInstance.name);

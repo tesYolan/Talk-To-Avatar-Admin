@@ -1,5 +1,5 @@
 import { Component,Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
@@ -15,6 +15,7 @@ export class InstanceDetailComponent implements OnInit{
   constructor(
     private instanceService: InstanceService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) {}
 
@@ -32,7 +33,12 @@ export class InstanceDetailComponent implements OnInit{
     //TODO launch codes go here
   }
   destroy(): void {
-    //TODO destroy launch go here
+    //TODO destroy launch go here, TODO also prompt warning here.
+    this.route.params
+    .switchMap((params: Params) =>
+      this.instanceService.deleteInstance(params['id'])
+    )
+    .subscribe(instance => this.router.navigate(['/instances']));
   }
   share(): void {
     //TODO share code goes here.
