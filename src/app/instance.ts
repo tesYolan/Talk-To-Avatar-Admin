@@ -3,4 +3,5 @@ export class Instance {
   docker_id: string;
   token_id: string;
   in_session: number;
+  started: boolean;
 }

@@ -10,5 +10,11 @@
   <button (click)="goBack()">Back</button>
   <button (click)="launch()">Go to Session</button>
   <button (click)="share()">Generate Session Token for users</button>
+  <div *ngIf="instance.started; else elseBlock">
+    <button (click)="stop()">Stop Session</button>
+  </div>
+  <ng-template #elseBlock>
+    <button (click)="start()">Start Session</button>
+  </ng-template>
   <button (click)="destroy()">Terminate Session</button>
 </div>

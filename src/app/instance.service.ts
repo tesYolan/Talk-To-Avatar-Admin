@@ -51,7 +51,7 @@ export class InstanceService
     const url = `${this.instanceUrl}/${id}`;
     return this.http.delete(url, { headers: this.headers } )
     .toPromise()
-    .then(() => null)
+    .then(this.extractData)
     .catch(this.handleError);
   }
 

@@ -39,7 +39,10 @@ export class DynamicFormInstanceComponent implements OnInit {
     this.request = JSON.parse(this.payLoad);
     console.log('It is posting this to instances.');
     //TODO handle from the type of response it got from the system to display
-    //appropriate messages to the user.
-    this.instanceService.create(this.request).then(instance => this.router.navigate(['/instances']));
+    //appropriate messages to the user. One of which is there are no users.
+    this.instanceService.create(this.request).then(response =>
+      {
+        this.router.navigate(['/instances'])
+      });
   }
 }
