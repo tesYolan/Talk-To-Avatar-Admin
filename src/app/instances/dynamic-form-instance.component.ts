@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { ConfigurationBase } from './configuration-base';
-import { ConfigurationControlService } from './configuration-control.service';
+import { ConfigurationBase } from '../common/configuration-base';
+import { ConfigurationControlService } from '../common/configuration-control.service';
 import { InstanceService } from './instance.service';
 import { Router, ActivatedRoute , Params } from '@angular/router';
+import { Location } from '@angular/common';
+import { DynamicFormConfigurationComponent } from '../common/dynamic-form-configuration.component';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -17,6 +19,7 @@ export class DynamicFormInstanceComponent implements OnInit {
 
   @Input() configurations: ConfigurationBase<any>[] = [];
   //TODO this must check for the type it's cast on to do it.
+  //TODO the following two currently are useless, they where places in the hopes to remove redudancy with dynamic-form-configuraiton and this file bia using the service by the routes accessed.
   @Input() serviceRequest: any;
   @Input() requestType: String;
   form: FormGroup;
@@ -26,7 +29,8 @@ export class DynamicFormInstanceComponent implements OnInit {
   constructor(
     private gcs: ConfigurationControlService,
     private instanceService : InstanceService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
 
@@ -44,5 +48,10 @@ export class DynamicFormInstanceComponent implements OnInit {
       {
         this.router.navigate(['/instances'])
       });
+  }
+  goBack() {
+    //TODO discrading information error indicator.
+    console.log('Pressing go back');
+    this.location.back();
   }
 }

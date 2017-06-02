@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { DropdownConfiguration } from './configuration-dropdown';
-import { ConfigurationBase } from './configuration-base';
-import { TextboxConfiguration } from './configuration-textbox';
+import { DropdownConfiguration } from '../common/configuration-dropdown';
+import { ConfigurationBase } from '../common/configuration-base';
+import { TextboxConfiguration } from '../common/configuration-textbox';
 
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 

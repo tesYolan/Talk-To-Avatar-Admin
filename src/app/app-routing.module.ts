@@ -1,28 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 
-import { InstancesComponent } from './instances.component';
-import { ServerConfigurationComponent } from './server-configuration.component';
-import { InstanceDetailComponent } from './instance-detail.component';
-import { NewInstanceComponent } from './new-instance.component';
+import { PageNotFoundComponent } from './not-found.component';
 
 const routes: Routes = [
+  //TODO add Page Not Found Route, ALSO what if a person navigates to the above location when it doesn't exist.
   {
-    path: 'instances',
-    component: InstancesComponent
+    path: '',
+    redirectTo: 'instances',
+    pathMatch: 'full'
   },
   {
-    path: 'configuration',
-    component: ServerConfigurationComponent
-  },
-  {
-    path: 'instances/create',
-    component: NewInstanceComponent
-  },
-  {
-    path: 'instances/:id',
-    component: InstanceDetailComponent
-  },
+    path: '**',
+    component: PageNotFoundComponent }
 ];
 
 @NgModule({

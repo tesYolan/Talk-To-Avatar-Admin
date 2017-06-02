@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { Instance } from './instance';
-import { DropdownConfiguration } from './configuration-dropdown';
-import { ConfigurationBase } from './configuration-base';
-import { TextboxConfiguration } from './configuration-textbox';
+import { DropdownConfiguration } from '../common/configuration-dropdown';
+import { ConfigurationBase } from '../common/configuration-base';
+import { TextboxConfiguration } from '../common/configuration-textbox';
 
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
@@ -14,6 +14,8 @@ export class InstanceService
   private instanceUrl = 'http://localhost:3011/instances';
   private headers = new Headers({'Content-Type': 'application/json'});
   private instance = 'instance';
+  private startRequest =  { 'started' : 'true' } ;
+  private stopRequest =  { 'started' : 'false' } ;
 
   constructor(private http: Http) {}
 
@@ -23,10 +25,32 @@ export class InstanceService
     .then(this.extractData)
     .catch(this.handleError);
   }
+  //TODO There is no StartInstances function as starting multiple sessions requires feature that are not currently not implemented.
+  stopInstances(): Promise<Instance[]> {
+    const url = `${this.instanceUrl}`;
+    return this.http.put(url, this.stopRequest, {headers: this.headers})
+    .toPromise()
+    .then(this.extractData)
+    .catch(this.handleError);
+  }
 
   getInstance(id: string): Promise<Instance> {
     const url = `${this.instanceUrl}/${id}`;
     return this.http.get(url)
+    .toPromise().then(this.extractData)
+    .catch(this.handleError);
+  }
+
+  startInstance(id: string): Promise<Instance> {
+    const url = `${this.instanceUrl}/${id}`;
+    return this.http.put(url, this.startRequest, {headers: this.headers})
+    .toPromise().then(this.extractData)
+    .catch(this.handleError);
+  }
+
+  stopInstance(id: string): Promise<Instance> {
+    const url = `${this.instanceUrl}/${id}`;
+    return this.http.put(url, this.stopRequest, {headers: this.headers})
     .toPromise().then(this.extractData)
     .catch(this.handleError);
   }

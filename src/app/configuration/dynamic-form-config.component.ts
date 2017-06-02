@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { ConfigurationBase } from './configuration-base';
-import { ConfigurationControlService } from './configuration-control.service';
+import { ConfigurationBase } from '../common/configuration-base';
+import { ConfigurationControlService } from '../common/configuration-control.service';
 import { ConfigurationService } from './configuration.service';
-import { InstanceService } from './instance.service';
-import { ActivatedRoute , Params } from '@angular/router';
+import { RouterState, ActivatedRoute , Params } from '@angular/router';
+import { Location } from '@angular/common'
 
 import 'rxjs/add/operator/switchMap';
 
@@ -27,8 +27,8 @@ export class DynamicFormConfigComponent implements OnInit {
   constructor(
     private gcs: ConfigurationControlService,
     private configurationService : ConfigurationService,
-    private instanceService : InstanceService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private location: Location
   ) {}
 
 
@@ -42,5 +42,9 @@ export class DynamicFormConfigComponent implements OnInit {
     //TODO how can re-write this funcition to make sure it outputs a function a system,
     console.log('It is posting this to configuraiton');
     this.configurationService.create(this.request);
+  }
+  goBack() {
+    //TODO discarding information error indicator.
+    this.location.back();
   }
 }

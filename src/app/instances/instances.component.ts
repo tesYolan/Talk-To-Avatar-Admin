@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Instance } from './instance';
 import { InstanceService } from './instance.service';
-import { ConfigurationService } from './configuration.service';
-import { Configuration } from './configuration';
+import { ConfigurationService } from '../configuration/configuration.service';
+import { Configuration } from '../configuration/configuration';
 @Component({
   selector: 'my-instances',
   templateUrl: './instances.component.html',
