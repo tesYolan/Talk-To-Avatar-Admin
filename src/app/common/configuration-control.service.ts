@@ -9,7 +9,7 @@ export class ConfigurationControlService {
 
   toFormGroup(configurations: ConfigurationBase<any>[]) {
     let group: any = {};
-
+    //TODO how can i insert Custom Validators here to fix the issues that arise.
     configurations.forEach(configuration => {
       group[configuration.key] = configuration.required ? new FormControl(configuration.value || '', Validators.required)
 

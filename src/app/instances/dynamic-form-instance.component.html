@@ -7,9 +7,9 @@
 
     <div class="form-row">
       <button type="submit" [disabled]="!form.valid">Save</button>
-      <button (click)="goBack()">Cancel</button>
     </div>
   </form>
+      <button (click)="goBack()">Cancel</button>
 
   <div *ngIf="payLoad" class="form-row">
     <strong>Creating the following instance. </strong>

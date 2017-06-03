@@ -3,13 +3,16 @@
   Using Server Configuration {{configuration.commit_id}}
 </div>
 <div>
-<ul class="instances">
-  <li *ngFor="let instance of instances" [class.selected]="instance === selectedInstance" (click)="onSelect(instance)">
-  <span class="badge">{{instance.name}}</span>
-  </li>
-</ul>
-<!--TODO indicate new new instance can't be created-->
-<button (click)="createInstances()">Create New Session</button>
-<button (click)="stopInstances()">Stop all Sessions</button>
-<button (click)="deleteInstances()">Delete All Sessions</button>
+  <ul class="instances">
+    <!--TODO I need to remove the classes here, as i just inserted them without thought.  -->
+    <li *ngFor="let instance of instances" [class.selected]="instance === selectedInstance" (click)="onSelect(instance)">
+    <span class="badge">{{instance.name}}</span>
+    </li>
+  </ul>
+  <!--TODO indicate new new instance can't be created-->
+  <button (click)="createInstances()">Create New Session</button>
+  <div *ngIf="true">
+    <button (click)="stopInstances()">Stop all Sessions</button>
+    <button (click)="deleteInstances()">Delete All Sessions</button>
+  </div>
 </div>
