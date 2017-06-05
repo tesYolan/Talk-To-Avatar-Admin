@@ -86,6 +86,7 @@ export class InstanceService
       new DropdownConfiguration({
         key: 'chatbot',
         label: 'chatbot to use',
+        //TODO not requiring this as let's choose one of the system???
         options: [
           {key: 'opencog', value: 'opencog'},
           {key: 'aiml', value: 'aiml'},

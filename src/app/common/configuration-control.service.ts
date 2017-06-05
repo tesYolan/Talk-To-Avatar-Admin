@@ -11,8 +11,8 @@ export class ConfigurationControlService {
     let group: any = {};
     //TODO how can i insert Custom Validators here to fix the issues that arise.
     configurations.forEach(configuration => {
-      group[configuration.key] = configuration.required ? new FormControl(configuration.value || '', Validators.required)
-
+      group[configuration.key] = configuration.required ? new FormControl(configuration.value || '',
+        [Validators.pattern('(?:[a-z0-9]+|[a-z0-9][a-z0-9-]+[a-z0-9])'),Validators.required])
         : new FormControl(configuration.value || '');
     });
     return new FormGroup(group);
