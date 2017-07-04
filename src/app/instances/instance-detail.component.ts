@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -31,6 +31,9 @@ export class InstanceDetailComponent implements OnInit{
   }
   launch(): void {
     //TODO launch codes go here if it's not enabled then start then launch it.
+    //So, how, :
+    window.open('http://localhost:4200/'+this.instance.name,'_blank');
+
   }
   destroy(): void {
     //TODO destroy launch go here, TODO also prompt warning here.
@@ -57,5 +60,6 @@ export class InstanceDetailComponent implements OnInit{
   }
   share(): void {
     //TODO share code goes here.
+    //EMAIL links options here would be necessary.
   }
 }

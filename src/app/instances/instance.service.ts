@@ -9,11 +9,9 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 @Injectable()
-export class InstanceService
-{
+export class InstanceService {
   private instanceUrl = 'http://localhost:3011/instances';
   private headers = new Headers({'Content-Type': 'application/json'});
-  private instance = 'instance';
   private startRequest =  { 'started' : 'true' } ;
   private stopRequest =  { 'started' : 'false' } ;
 
@@ -25,7 +23,7 @@ export class InstanceService
     .then(this.extractData)
     .catch(this.handleError);
   }
-  //TODO There is no StartInstances function as starting multiple sessions requires feature that are not currently not implemented.
+  // TODO There is no StartInstances function as starting multiple sessions requires feature that are not currently not implemented.
   stopInstances(): Promise<Instance[]> {
     const url = `${this.instanceUrl}`;
     return this.http.put(url, this.stopRequest, {headers: this.headers})
@@ -60,7 +58,7 @@ export class InstanceService
     console.log(name);
     return this.http.post(this.instanceUrl,  name , options)
     .toPromise()
-    .then(() => null)//TODO route this to message
+    .then(() => null)// TODO route this to message
     .catch(this.handleError);
   }
 
@@ -80,13 +78,13 @@ export class InstanceService
   }
 
   getNewInstanceConfigurationsForm() {
-    //TODO move this to call to REST for HEAD.
+    // TODO move this to call to REST for HEAD.
     let configurations: ConfigurationBase<any>[] = [
 
       new DropdownConfiguration({
         key: 'chatbot',
         label: 'chatbot to use',
-        //TODO not requiring this as let's choose one of the system???
+        // TODO not requiring this as let's choose one of the system???
         options: [
           {key: 'opencog', value: 'opencog'},
           {key: 'aiml', value: 'aiml'},
@@ -112,20 +110,21 @@ export class InstanceService
         order: 1
       })
     ];
-    return configurations.sort((a,b) => a.order - b.order);
+    return configurations.sort((a, b) => a.order - b.order);
   }
 
   private extractData(res: Response) {
     let body = res.json();
     return body || { };
   }
+
   private extractText(res: Response) {
     console.log(res);
     return res;
   }
 
   private handleError(error: any): Promise<any> {
-    //TODO how can i actually relay this message to the application.
+    // TODO how can i actually relay this message to the application.
     console.error('An Error occurred', error);
     return Promise.reject(error.message || error);
   }

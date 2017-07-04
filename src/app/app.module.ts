@@ -14,8 +14,12 @@ import { FormConfigurationModule } from './common/form-configuration.module';
 //For it's required to be obtained system wide for most instance.
 import { ConfigurationService } from './configuration/configuration.service';
 import { InstanceService } from './instances/instance.service';
+
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
-  imports:      [ BrowserModule, HttpModule, RouterModule, ConfigurationModule, InstanceModule, AppRoutingModule ],
+  imports:      [ BrowserModule, BrowserAnimationsModule, HttpModule, RouterModule, ToastModule.forRoot(), ConfigurationModule, InstanceModule, AppRoutingModule ],
   declarations: [ AppComponent, PageNotFoundComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ ConfigurationService, InstanceService ]

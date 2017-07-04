@@ -11,8 +11,9 @@ import { Configuration } from '../configuration/configuration';
   //  styleUrls: [ './instances.component.css' ],
 })
 export class InstancesComponent implements OnInit {
-  instances : Instance[];
-  configuration : Configuration;
+  instances: Instance[];
+  configuration: Configuration;
+  selectedInstance: Instance;
   constructor(
     private instanceService: InstanceService,
     private configurationService: ConfigurationService,
@@ -25,23 +26,22 @@ export class InstancesComponent implements OnInit {
     this.configurationService.getConfiguration().then(configuration => this.configuration = configuration);
   }
   deleteInstanceService(): void {
-    this.instanceService.deleteInstances().then(instance => {this.instances =[]});
+    this.instanceService.deleteInstances().then(instance => {this.instances = []});
   }
   ngOnInit(): void {
     this.getConfiguration();
     this.getInstances();
   }
-  selectedInstance: Instance;
 
-  onSelect(instance: Instance): void{
+  onSelect(instance: Instance): void {
     this.selectedInstance = instance;
     console.log(this.selectedInstance);
     this.goToDetail();
   };
-  createInstances(): void{
+  createInstances(): void {
     this.router.navigate(['/instances/create']);
   }
-  deleteInstances(): void{
+  deleteInstances(): void {
     this.deleteInstanceService();
   }
   goToDetail(): void {
