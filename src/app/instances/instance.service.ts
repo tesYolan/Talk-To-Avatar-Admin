@@ -6,11 +6,13 @@ import { ConfigurationBase } from '../common/configuration-base';
 import { TextboxConfiguration } from '../common/configuration-textbox';
 
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { ServerConfiguration } from '../config';
 
 import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class InstanceService {
-  private instanceUrl = 'http://localhost:3011/instances';
+  private config= new ServerConfiguration();
+  private instanceUrl = 'http://' + this.config.backend_url + ':' + this.config.backend_port + '/instances';
   private headers = new Headers({'Content-Type': 'application/json'});
   private startRequest =  { 'started' : 'true' } ;
   private stopRequest =  { 'started' : 'false' } ;

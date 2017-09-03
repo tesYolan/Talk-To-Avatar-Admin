@@ -7,15 +7,16 @@ import { TextboxConfiguration } from '../common/configuration-textbox';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import { ServerConfiguration } from '../config';
 
 import { Configuration } from './configuration';
-//TODO get configuration from server and actually set form entries.
+// TODO get configuration from server and actually set form entries.
 @Injectable()
 export class ConfigurationService {
-  private configurationUrl = 'http://localhost:3011/configuration';
+  private server_config= new ServerConfiguration;
+  private configurationUrl = 'http://' + this.server_config.backend_url + ':' + this.server_config.backend_port + '/configuration';
   private headers = new Headers({'Content-Type': 'application/json'});
-  private config = 'config';
-  constructor(private http: Http){ }
+  constructor(private http: Http) {}
   create(name: JSON): Promise<Configuration> {
     let options = new RequestOptions({ headers: this.headers });
     console.log(' Posting Document ');
@@ -43,7 +44,7 @@ export class ConfigurationService {
     return Promise.reject(error.message || error);
   }
   getConfigurationsForm() {
-    //TODO move this to call to REST for HEAD.
+    // TODO move this to call to REST for HEAD.
     let configurations: ConfigurationBase<any>[] = [
 
       new DropdownConfiguration({
@@ -75,6 +76,6 @@ export class ConfigurationService {
         order: 1
       })
     ];
-    return configurations.sort((a,b) => a.order - b.order);
+    return configurations.sort((a, b) => a.order - b.order);
   }
 }

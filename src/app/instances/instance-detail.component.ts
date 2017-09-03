@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -6,18 +6,23 @@ import 'rxjs/add/operator/switchMap';
 import { Instance } from './instance';
 import { InstanceService } from './instance.service';
 
+import { ServerConfiguration } from '../config';
 @Component({
   selector: 'instance-detail',
   templateUrl: './instance-detail.component.html',
 })
-export class InstanceDetailComponent implements OnInit{
-  instance : Instance;
+export class InstanceDetailComponent implements OnInit {
+  instance: Instance;
+  private config= new ServerConfiguration();
+  private client_url = 'https://' + this.config.frontend_url + ':' + this.config.frontend_port + '/#room-id=';
+lient_url: string;
   constructor(
     private instanceService: InstanceService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
-  ) {}
+    private location: Location,
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.params
@@ -30,13 +35,11 @@ export class InstanceDetailComponent implements OnInit{
     this.location.back();
   }
   launch(): void {
-    //TODO launch codes go here if it's not enabled then start then launch it.
-    //So, how, :
-    window.open('http://localhost:4200/'+this.instance.name,'_blank');
+    window.open(this.client_url + this.instance.name, '_blank');
 
   }
   destroy(): void {
-    //TODO destroy launch go here, TODO also prompt warning here.
+    // TODO destroy launch go here, TODO also prompt warning here.
     this.route.params
     .switchMap((params: Params) =>
       this.instanceService.deleteInstance(params['id'])
@@ -51,7 +54,7 @@ export class InstanceDetailComponent implements OnInit{
     .subscribe(instance => this.instance = instance);
   }
   stop(): void {
-    //TODO this requires active containers that have some state saved up.
+    // TODO this requires active containers that have some state saved up.
     this.route.params
     .switchMap((params: Params) =>
       this.instanceService.stopInstance(params['id'])
@@ -59,7 +62,7 @@ export class InstanceDetailComponent implements OnInit{
     .subscribe(instance => this.instance = instance);
   }
   share(): void {
-    //TODO share code goes here.
-    //EMAIL links options here would be necessary.
+    // TODO share code goes here.
+    // EMAIL links options here would be necessary.
   }
 }

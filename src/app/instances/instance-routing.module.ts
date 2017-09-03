@@ -4,7 +4,6 @@ import { RouterModule, Routes} from '@angular/router';
 import { InstancesComponent } from './instances.component';
 import { InstanceDetailComponent } from './instance-detail.component';
 import { NewInstanceComponent } from './new-instance.component';
-import { PageNotFoundComponent } from '../not-found.component';
 
 const routes: Routes = [
   {
