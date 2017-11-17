@@ -14,7 +14,7 @@ import { ServerConfiguration } from '../config';
 export class InstanceDetailComponent implements OnInit {
   instance: Instance;
   private config= new ServerConfiguration();
-  private client_url = 'https://' + this.config.frontend_url + ':' + this.config.frontend_port + '/#room-id=';
+  private client_url = 'https://' + this.config.frontend_url + ':' + this.config.frontend_port + '/?roomId=';
 lient_url: string;
   constructor(
     private instanceService: InstanceService,
