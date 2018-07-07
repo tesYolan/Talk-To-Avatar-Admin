@@ -10,7 +10,6 @@ import { Location } from '@angular/common';
 import { DynamicFormConfigurationComponent } from '../common/dynamic-form-configuration.component';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
-
 import 'rxjs/add/operator/switchMap';
 
 @Component({
