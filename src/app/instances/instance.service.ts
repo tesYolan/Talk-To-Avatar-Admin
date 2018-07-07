@@ -107,7 +107,7 @@ export class InstanceService {
       new TextboxConfiguration({
         key: 'instance_name',
         label: 'Instance Name',
-        value: 'instance name',
+        value: 'instance-name',
         required: true,
         order: 1
       })
