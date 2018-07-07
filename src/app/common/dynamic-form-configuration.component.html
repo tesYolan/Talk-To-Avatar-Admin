@@ -6,7 +6,7 @@
     <input *ngSwitchCase="'textbox'" [formControlName]="configuration.key" [id]="configuration.key" [type]="configuration.type">
 
     <select [id]="configuration.key" *ngSwitchCase="'dropdown'" [formControlName]="configuration.key">
-      <option *ngFor="let opt of configuration.options" [value]="opt.key">
+      <option *ngFor="let opt of configuration.options" [value]="opt.key" [selected]="opt.value[0]">
       {{opt.value}}
       </option>
     </select>
