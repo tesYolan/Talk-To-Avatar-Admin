@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: [ './app.component.css', '../../node_modules/bootstrap/dist/css/bootstrap.min.css'],
 })
 export class AppComponent  {
-  name = 'Talk to Sophia';
+  name = 'Talk to Avatar';
 }

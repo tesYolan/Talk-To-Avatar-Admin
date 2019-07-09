@@ -1,7 +1,7 @@
 {
-  "name": "Talk-to-Sophia",
+  "name": "Talk-to-Avatar",
   "version": "0.0.1",
-  "description": "Talk to Sophia Online!",
+  "description": "Talk to Avatar Online!",
   "scripts": {
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
